@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device=width,initial-scale=1.0">
+    <title>Liên hệ với chúng tôi</title>
+<style>
+    body{
+        background-color:#e2e8f0;
+        font-family:Arial,sans-serif;
+    }
+    .form-box{
+        width:85%;
+        margin:30px auto;
+        background-color:white;
+        border-radius:12px;
+        box-shadow:0 5px 15px #bbb;
+        overflow:hidden;
+    }
+    .header{
+        background-color:#0f766e;
+        color:white;
+        padding:20px 30px;
+    }
+    .header h1{
+        margin:0;
+        font-size:30px;
+    }
+    .header p{
+        margin:5px 0 0;
+        font-size:16px;
+    }
+    .content{
+        padding:25px;
+    }
+    .row{
+        display:flex;
+        gap:20px;
+    }
+    .box{
+        width:50%;
+    }
+    label{
+        display:block;
+        font-weight:bold;
+        color:#334155;
+        margin-bottom:7px;
+    }
+    input,select,textarea{
+        width:100%;
+        box-sizing:border-box;
+        padding:1px solid #cbd5e1;
+        border-radius:15px;
+        margin-bottom:18px;
+    }
+    textarea{
+        height:90px;
+        resize:vertical;
+    }
+    .check{
+        display:flex;
+        justify-content:flex-end;
+        align-items:center;
+        gap:10px;
+        margin-bottom:20px;
+    }
+    .check input{
+        width:auto;
+        margin:0;
+    }
+    .check label{
+        margin:0;
+        font-weight:normal;
+    }
+    button{
+        padding:12px 25px;
+        border:none;
+        border-radius:6px;
+        font-size:16px;
+        cursor:pointer;
+    }
+    .send{
+        background-color:#0f766e;
+        color:white;
+    }
+    .reset{
+        background-color:#dbe4ee;
+        color:#334155;
+        margin-left:10px;
+    }
+    @media(max-width:700px){
+        .row{
+            display:block;
+        }
+        .box{
+            width:100%;
+        }
+        .form-box{
+            width:95%;
+        }
+    }
+</style>    
+</head>
+<body>
+    <div class="form-box">
+        <div class="header">
+            <h1>Liên hệ với chúng tôi</h1>
+            <p>Vui lòng điền thông tin bên dưới, 
+                chúng tôi sẽ phản hồi trong 24 giờ.
+            </p>
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="box">
+                    <label>Họ và tên</label>
+                    <input type="text" value="Nguyễn Văn An">
+                </div>
+                <div class="box">
+                    <label>Email</label>
+                    <input type="email" value="an.nv@tlu.edu.vn">
+                </div>
+            </div>
+            <div class="row">
+                <div class="box">
+                    <label>Số điện thoại</label>
+                    <input type="text" value="0987654321">
+                </div>
+                <div class="box">
+                    <label>chủ đề</label>
+                    <select>
+                        <option>Hỏi về khóa học</option>
+                        <option>Hỏi về bài tập</option>
+                        <option>Hỏi về học phí</option>
+                    </select>
+                </div>
+            </div>
+            <label>Nội dung</label>
+            <textarea>Em muốn hỏi về lịch nộp bài tập
+                môn Lập trình Web ạ.
+            </textarea>
+            <div class="check">
+                <input type="checkbox" checked>
+                <label>tôi đồng ý nhận email phản hồi.</label>
+            </div>
+            <button class="send">Gửi liên hệ</button>
+            <button class="reset">Nhập lại</button>
+        </div>
+    </div>
+</body>
+</html>    
