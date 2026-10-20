@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch hôm nay</title>
+<style>
+    body{
+        margin:0;
+        font-family:Arial,sans-serif;
+        background:url("Anh\Bai12\Nen.gif");
+        background-size:cover;
+        background-position:center;
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .container{
+        width:600px;
+        background:#ffffff;
+        padding:30px;
+        border-radius:15px;
+        box-shadow:0 10px 30px #cccccc;
+        text-align:center;
+    }
+    .calendar{
+        border:1px solid #cccccc;
+        border-radius:12px;
+        padding:22px;
+    }
+    .year{
+        color:#C62828;
+        font-size:18px;
+        font-weight:bold;
+    }
+    .month{
+        color:#1565C0;
+        font-size:24px;
+        font-weight:bold;
+    }
+    .day{
+        color:#C62828;
+        font-size:52px;
+        font-weight:bold;
+        margin:10px 0 0;
+    }
+    .weekday{
+        color:#1565C0;
+        font-size:24px;
+        font-weight:bold;
+    }
+    .greeting{
+        color:#C62828;
+        font-size:24px;
+        font-style:italic;
+        margin:20px 0;
+    }
+    .form{
+        border:2px solid #1565C0;
+        border-radius:12px;
+        padding:20px 10px;
+        display:flex;
+        justify-content:space-ảound;
+        align-items:center;
+        gap:10px;
+    }
+    .input-group{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:5px;
+    }
+    .input-group label{
+        font-size:18px;
+    }
+    .input-group input{
+        width:80px;
+        padding:8px 5px;
+        border:1px solid #cccccc;
+        border-radius:6px;
+        font-size:18px;
+        text-align:center;
+    }
+    button{
+        background:#546E7A;
+        color:white;
+        border:none;
+        border-radius:6px;
+        padding:10px 20px;
+        font-size:16px;
+        cursor:pointer;
+    }
+    button:hover{
+        background:#37474F;
+    }
+    @media(max-width:600px){
+        .container{
+            width:90%;
+            padding:15px;
+        }
+        .form{
+            flex-wrap:wrap;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="calendar">
+            <div class="year"id="year"></div>
+            <div class="month"id="month"></div>
+            <div class="day"id="day"></div>
+            <div class="weekday"id="weekday"></div>
+        </div>
+        <div class="greeting"id="greeting"></div>
+        <div class="form">
+            <div class="input-group">
+                <label for="inputDay">Ngày</label>
+                <input type="number"id="inputDay"min="1"max="31">
+            </div>
+            <div class="input-group">
+                <label for="inputMonth">Tháng</label>
+                <input type="number"id="inputMonth"min="1"max="12">
+            </div>
+            <div class="input-group">
+                <label for="inputYear">Năm</label>
+                <input type="number"id="inputYear"min="1">
+            </div>
+            <button id="btnCalendar">In<br>lịch</button>
+        </div>
+    </div>
+    <script>
+        function inLich(){
+            let day=Number(document.getElementById("inputDay").value);
+            let month=Number(document.getElementById("inputMonth").value);
+            let year=Number(document.getElementById("inputYear").value);
+            if(!day||!month||!year||
+                month<1||month>12||year<1||!Number.isInteger(day)||
+                !Number.isInteger(month)||!Number.isInteger(year)
+            ){
+                alert("Vui lòng nhập ngày, tháng, năm hợp lệ!");
+                return;
+            }
+            let date=new Date(year,month -1,day);
+            if(date.getFullYear()!==year||
+        date.getMonth()!==month -1||
+    date.getDate()!==day){
+        alert("Ngày tháng năm không hợp lệ!");
+        return;
+    }
+    let thu=[
+        "Chủ nhật","Thú hai","Thưa ba",
+        "Thứ tư","Thứ năm","Thứ sáu","Thứ bảy"
+    ];
+    let gio=new Date().getHours();
+    let loiChao="";
+    if(gio>=5&&gio<12){
+        loiChao="Chào buổi sáng!";
+    }else if(gio>=12&&gio<18){
+        loiChao="Chào buổi chiều!";
+    }else{
+        loiChao="chào buổi tối!";
+    }
+    document.getElementById("year").innerText=year;
+    document.getElementById("month").innerText="Tháng"+month;
+    document.getElementById("day").innerText=day;
+    document.getElementById("weekday").innerText=thu[date.getDay()];
+    document.getElementById("greeting").innerText=loiChao;
+        }
+        let today=new Date();
+    document.getElementById("inputDay").value=today.getDate();
+    document.getElementById("inputMonth").value=today.getMonth()+1;
+    document.getElementById("inputYear").value=today.getFullYear();
+    document.getElementById("btnCalendar").addEventListener("click",inLich);
+    inLich();
+    </script>
+</body>
+</html>
