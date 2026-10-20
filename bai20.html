@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoa hồng</title>
+<style>
+    *{
+        box-sizing:border-box;
+    }
+    body{
+        margin:0;
+        padding:14px;
+        font-family:Arial,sans-serif;
+        background:white;
+    }
+    .container{
+        width:100%;
+        max-width:1384px;
+        min-height:432px;
+        margin:auto;
+        padding:39px 25px;
+        background:#101619;
+        text-align:center;
+    }
+    .khung{
+        width:100%;
+        max-width:744px;
+        min-height:181px;
+        margin:0 auto 38px;
+        padding:25px 30px;
+        border-radius:25px;
+        background:#1c2226;
+    }
+    #hoa{
+        display:block;
+        width:180px;
+        height:65px;
+        margin:0 auto;
+        object-fit:contain;
+        filter:grayscale(1);
+        transition:filter 0.3s,transform 0.3s,opacity 0.3s;
+    }
+    .chu{
+        margin-top:7px;
+        font-size:44px;
+        font-style:italic;
+        background:linear-gradient(90deg,#f5d44b,#b58b17);
+        color:transparent;
+        background-clip:text;
+        -webkit-backgroound-clip:text;
+    }
+    .buttons{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:12px;
+    }
+    button{
+        padding:13px 25px;
+        border:2px solid #303a40;
+        border-radius:13px;
+        background:#232b30;
+        color:white;
+        font-size:20px;
+        cursor:pointer;
+        transition:0.2s;
+    }
+    button:hover{
+        background:#39444b;
+    }
+    button.active{
+        background:#0d6efd;
+        border-color:#0d6efd;
+    }
+    @media(max-width:600px){
+        .container{
+            padding:25px 12px;
+        }
+        .chu{
+            font-size:30px;
+        }
+        button{
+            padding:10px 15px;
+            font-size:16px;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="khung">
+            <img id="hoa"src="Anh\Bai20\hoahong.gif"alt="Hoa hồng">
+            <div class="chu">Special For You</div>
+        </div>
+        <div class="buttons">
+            <button class="active"onclick="hieuUng('Gray',this)">Gray</button>
+            <button class="active"onclick="hieuUng('Xray',this)">Xray</button>
+            <button class="active"onclick="hieuUng('Invert',this)">Invert</button>
+            <button class="active"onclick="hieuUng('FlipH',this)">FlipH</button>
+            <button class="active"onclick="hieuUng('FlipV',this)">FlipV</button>
+            <button class="active"onclick="hieuUng('Glow',this)">Glow</button>
+            <button class="active"onclick="hieuUng('Shadow',this)">Shadow</button>
+            <button class="active"onclick="hieuUng('Bold Shadow',this)">Bold Shadow</button>
+            <button class="active"onclick="hieuUng('DropShadow',this)">DropShadow</button>
+            <button class="active"onclick="hieuUng('Blur',this)">Blur</button>
+            <button class="active"onclick="hieuUng('Wave',this)">Wave</button>
+            <button class="active"onclick="hieuUng('Mask',this)">Mask</button>
+            <button class="active"onclick="hieuUng('Alpha',this)">Alpha</button>
+        </div>
+    </div>
+    <svg width="0"height="0"style="position:absolute">
+        <filter id="wave">
+            <feTurbulence type="turbulence"
+            baseFrequency="0.03"
+            numOctaves="2"
+            seed="2"
+            result="noise"></feTurbulence>
+            <feDisplacementMap in="SourceGraphic"
+            in2="noise"
+            scale="12"></feDisplacementMap>
+        </filter>
+    </svg>
+    <script>
+        function hieuUng(ten,nut){
+            var hoa=document.getElementById("hoa");
+            var cacNut=document.querySelectorAll("button");
+            hoa.style.filter="none";
+            hoa.style.transform="none";
+            hoa.style.opacity="1";
+            hoa.style.clipPath="none";
+            hoa.style.webkitMaskImage="none";
+            hoa.style.maskImage="none";
+            cacNut.forEach(function(b){
+                b.classList.remove("active");
+            });
+            nut.classList.add("active");
+            switch(ten){
+                case"Gray":
+                hoa.style.filter="grayscale(1)";
+                break;
+                case"Xray":
+                hoa.style.filter="grayscale(1)invert(1)";
+                break;
+                case"Invert":
+                hoa.style.filter="invert(1)";
+                break;
+                case"FlipH":
+                hoa.style.transform="scaleX(-1)";
+                break;
+                case"FlipV":
+                hoa.style.transform="scaleY(-1)";
+                break;
+                case"Glow":
+                hoa.style.filter="brightness(1.4)drop-shadow(0 0 10px gold)";
+                break;
+                case"Shadow":
+                hoa.style.filter="drop-shadow(5px 5px 5px gray)";
+                break;
+                case"Bold Shadow":
+                hoa.style.filter="drop-shadow(7px 7px 5px black)";
+                break;
+                case"DropShadow":
+                hoa.style.filter="drop-shadow(8px 8px 8px #0d6efd)";
+                break;
+                case"Blur":
+                hoa.style.filter="blur(3px)";
+                break;
+                case"Wave":
+                hoa.style.filter="url(#wave)";
+                break;
+                case"Mask":
+                hoa.style.clipPath="circle(40%)";
+                break;
+                case"Alpha":
+                hoa.style.opacity="0.4";
+                break;
+            }
+        }
+    </script>
+</body>
+</html>
