@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #374151;
+        }
+        .container {
+            max-width: 652px;
+            margin: 8px auto;
+            padding: 24px 13px;
+            background-color: #fff7ed;
+        }
+        .form-dang-ky {
+            background-color: #ffffff;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            padding: 26px 28px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        h2 {
+            margin: 0 0 5px;
+            color: #c2410c;
+            font-size: 22px;
+        }
+        .mo-ta {
+            margin: 0 0 20px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+        }
+        input:focus {
+            border-color: #c2410c;
+        }
+        input.hop-le {
+            border: 2px solid #16a34a;
+        }
+        input.khong-hop-le {
+            border: 2px solid #dc2626;
+            background-color: #fef2f2;
+        }
+        .thong-bao {
+            margin-top: 6px;
+            font-size: 13px;
+        }
+        .thong-bao.loi {
+            color: #dc2626;
+        }
+        .thong-bao.dung {
+            color: #16a34a;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background-color: #c2410c;
+            color: #ffffff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #9a3412;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 12px;
+            }
+            .form-dang-ky {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-dang-ky">
+        <h2>Đăng ký tài khoản</h2>
+        <p class="mo-ta">
+            Dữ liệu được kiểm tra bằng JavaScript trước khi gửi.
+        </p>
+        <form id="formDangKy" novalidate>
+            <div class="form-group">
+                <label for="hoTen">Họ và tên</label>
+                <input type="text" id="hoTen"
+                       placeholder="Nguyễn Văn An">
+                <div class="thong-bao" id="loiHoTen"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email"
+                       placeholder="an.nv@example.com">
+                <div class="thong-bao" id="loiEmail"></div>
+            </div>
+            <div class="form-group">
+                <label for="matKhau">Mật khẩu</label>
+                <input type="password" id="matKhau"
+                       placeholder="Nhập mật khẩu">
+                <div class="thong-bao" id="loiMatKhau"></div>
+            </div>
+            <div class="form-group">
+                <label for="xacNhan">Xác nhận mật khẩu</label>
+                <input type="password" id="xacNhan"
+                       placeholder="Nhập lại mật khẩu">
+                <div class="thong-bao" id="loiXacNhan"></div>
+            </div>
+            <button type="submit">Đăng ký</button>
+        </form>
+    </div>
+</div>
+<script>
+    const form = document.getElementById("formDangKy");
+    const hoTen = document.getElementById("hoTen");
+    const email = document.getElementById("email");
+    const matKhau = document.getElementById("matKhau");
+    const xacNhan = document.getElementById("xacNhan");
+    function hienThi(input, idThongBao, hopLe, noiDung) {
+        const thongBao = document.getElementById(idThongBao);
+        if (hopLe) {
+            input.className = "hop-le";
+            thongBao.className = "thong-bao dung";
+            thongBao.textContent = "✓ Hợp lệ";
+        } else {
+            input.className = "khong-hop-le";
+            thongBao.className = "thong-bao loi";
+            thongBao.textContent = "✗ " + noiDung;
+        }
+    }
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        let hopLe = true;
+        if (hoTen.value.trim() === "") {
+            hienThi(hoTen, "loiHoTen", false,
+                    "Họ và tên không được để trống");
+            hopLe = false;
+        } else {
+            hienThi(hoTen, "loiHoTen", true, "");
+        }
+        const mauEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!mauEmail.test(email.value.trim())) {
+            hienThi(email, "loiEmail", false,
+                    "Email không hợp lệ");
+            hopLe = false;
+        } else {
+            hienThi(email, "loiEmail", true, "");
+        }
+        if (matKhau.value.length < 6) {
+            hienThi(matKhau, "loiMatKhau", false,
+                    "Mật khẩu phải có ít nhất 6 ký tự");
+            hopLe = false;
+        } else {
+            hienThi(matKhau, "loiMatKhau", true, "");
+        }
+        if (xacNhan.value === "" ||
+            xacNhan.value !== matKhau.value) {
+            hienThi(xacNhan, "loiXacNhan", false,
+                    "Mật khẩu xác nhận không khớp");
+            hopLe = false;
+        } else {
+            hienThi(xacNhan, "loiXacNhan", true, "");
+        }
+        if (hopLe) {
+            alert("Đăng ký thành công!");
+            form.reset();
+            const cacO = [hoTen, email, matKhau, xacNhan];
+            const cacThongBao = [
+                "loiHoTen", "loiEmail",
+                "loiMatKhau", "loiXacNhan"
+            ];
+            cacO.forEach(function(input) {
+                input.className = "";
+            });
+            cacThongBao.forEach(function(id) {
+                const thongBao = document.getElementById(id);
+                thongBao.textContent = "";
+                thongBao.className = "thong-bao";
+            });
+        }
+    });
+</script>
+</body>
+</html>
