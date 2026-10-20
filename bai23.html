@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device=width,initial-scale=1.0">
+    <title>Thư viện ảnh</title>
+<style>
+    body{
+        font-family:Arial;
+        background:#f5f8fb;
+        text-align:center;
+    }
+    .container{
+        width:90%;
+        margin:20px auto;
+    }
+    .grid{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:16px;
+    }
+    .item{
+        height:115px;
+        position:relative;
+        overflow:hidden;
+        border-radius:10px;
+        box-shadow:0 4px 8px #ccc;
+    }
+    .item img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        transition:0.4s;
+    }
+    .item:hover img{
+        transform:scale(1.12);
+    }
+    .item p{
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:100%;
+        margin:0;
+        padding:10px;
+        box-sizing:border-box;
+        text-align:left;
+        color:white;
+        background:linear-gradient(transparent, #000);
+    }
+    @media(max-width:600px){
+        .grid{
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>thư viện ảnh-Hiệu ứng Hover</h2>
+        <p>Rẽ chuột lên ảnh để thấy hiệu ứng phóng to và chú thích.</p>
+        <div class="grid">
+            <div class="item">
+                <img src="Anh\Bai23\1-vinh-ha-long.jpg"alt="vịnh Hạ Long">
+                <p>Vịnh Hạ Long</p>
+            </div>
+            <div class="item">
+                <img src="Anh\Bai23\2-son-doong.jpg"alt="Hang sơn đoòng">
+                <p>Hang Sơn Đoòng</p>
+            </div>
+            <div class="item">
+                <img src="Anh\Bai23\3-thac-ban-gioc.jpg"alt="Thác bản giốc">
+                <p>Thác Bản Giốc</p>
+            </div>
+            <div class="item">
+                <img src="Anh\Bai23\4-fansipan.jpg"alt="Fansipan">
+                <p>Fansipan</p>
+            </div>
+            <div class="item">
+                <img src="Anh\Bai23\5-mekong.jpg"alt="Mekong">
+                <p>Đồng bằng sông Cửu Long</p>
+            </div>
+            <div class="item">
+                <img src="Anh\Bai23\6-phong-nha.jpg"alt="Phong nha">
+                <p>Động Phong Nha</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
