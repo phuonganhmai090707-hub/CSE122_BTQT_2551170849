@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách việc cần làm</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f1f2f7;
+            color: #212529;
+        }
+        .todo-app {
+            max-width: 640px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px #00000012;
+        }
+        .todo-header {
+            background-color: #6d28d9;
+            color: white;
+            padding: 20px 25px;
+        }
+        .todo-header h1 {
+            font-size: 22px;
+            margin: 0 0 6px;
+        }
+        .todo-header p {
+            font-size: 14px;
+            margin: 0;
+        }
+        .todo-form {
+            display: flex;
+            gap: 10px;
+            padding: 19px 25px;
+            border-bottom: 1px solid #ede9fe;
+        }
+        .todo-input {
+            flex: 1;
+            min-width: 0;
+            padding: 12px 14px;
+            font-size: 14px;
+            border: 1px solid #ddd6fe;
+            border-radius: 8px;
+            outline: none;
+        }
+        .todo-input:focus {
+            border-color: #6d28d9;
+        }
+        .add-btn {
+            padding: 0 22px;
+            border: none;
+            border-radius: 8px;
+            background-color: #6d28d9;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .add-btn:hover {
+            background-color: #5b21b6;
+        }
+        .todo-list {
+            list-style: none;
+            margin: 0;
+            padding: 8px 25px;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed #ede9fe;
+        }
+        .todo-check {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            border: 2px solid #a78bfa;
+            border-radius: 6px;
+            background-color: white;
+            cursor: pointer;
+        }
+        .todo-check.checked {
+            background-color: #6d28d9;
+            border-color: #6d28d9;
+            position: relative;
+        }
+        .todo-check.checked::after {
+            content: "✓";
+            position: absolute;
+            top: -1px;
+            left: 3px;
+            color: white;
+            font-size: 16px;
+        }
+        .todo-text {
+            flex: 1;
+            min-width: 0;
+            font-size: 14px;
+            cursor: pointer;
+            overflow-wrap: anywhere;
+        }
+        .todo-text.completed {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+        .delete-btn {
+            border: none;
+            border-radius: 7px;
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: 6px 12px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #fecaca;
+        }
+        .todo-footer {
+            padding: 20px 25px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            .todo-header,
+            .todo-form,
+            .todo-footer {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .todo-list {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .todo-header h1 {
+                font-size: 19px;
+            }
+            .add-btn {
+                padding: 0 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="todo-app">
+        <div class="todo-header">
+            <h1>Danh sách việc cần làm</h1>
+            <p>Thêm việc mới, đánh dấu hoàn thành hoặc xoá — tất cả bằng JavaScript.</p>
+        </div>
+        <form class="todo-form" id="todoForm">
+            <input
+                type="text"
+                class="todo-input"
+                id="todoInput"
+                placeholder="Nhập công việc cần làm..."
+                aria-label="Nhập công việc cần làm"
+            >
+            <button type="submit" class="add-btn">Thêm</button>
+        </form>
+        <ul class="todo-list" id="todoList"></ul>
+        <div class="todo-footer" id="todoFooter">
+            Còn 0 việc chưa hoàn thành
+        </div>
+    </div>
+    <script>
+        let tasks = [
+            { text: "Đọc chương HTML5 cơ bản", completed: true },
+            { text: "Làm bài tập CSS Grid", completed: false },
+            { text: "Quay video OBS nộp bài", completed: false }
+        ];
+        const todoForm = document.getElementById("todoForm");
+        const todoInput = document.getElementById("todoInput");
+        const todoList = document.getElementById("todoList");
+        const todoFooter = document.getElementById("todoFooter");
+        function renderTasks() {
+            todoList.innerHTML = "";
+            tasks.forEach(function(task, index) {
+                const li = document.createElement("li");
+                li.className = "todo-item";
+                const check = document.createElement("button");
+                check.type = "button";
+                check.className = "todo-check";
+                if (task.completed) {
+                    check.classList.add("checked");
+                }
+                check.setAttribute(
+                    "aria-label",
+                    task.completed ? "Bỏ đánh dấu hoàn thành" : "Đánh dấu hoàn thành"
+                );
+                const text = document.createElement("span");
+                text.className = "todo-text";
+                text.textContent = task.text;
+                if (task.completed) {
+                    text.classList.add("completed");
+                }
+                function toggleTask() {
+                    tasks[index].completed = !tasks[index].completed;
+                    renderTasks();
+                }
+                check.addEventListener("click", toggleTask);
+                text.addEventListener("click", toggleTask);
+                const deleteBtn = document.createElement("button");
+                deleteBtn.type = "button";
+                deleteBtn.className = "delete-btn";
+                deleteBtn.textContent = "Xóa";
+                deleteBtn.addEventListener("click", function() {
+                    tasks.splice(index, 1);
+                    renderTasks();
+                });
+                li.appendChild(check);
+                li.appendChild(text);
+                li.appendChild(deleteBtn);
+                todoList.appendChild(li);
+            });
+            const remaining = tasks.filter(function(task) {
+                return !task.completed;
+            }).length;
+            todoFooter.textContent =
+                "Còn " + remaining + " việc chưa hoàn thành";
+        }
+        todoForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const taskText = todoInput.value.trim();
+            if (taskText === "") {
+                alert("Vui lòng nhập công việc!");
+                return;
+            }
+            tasks.push({
+                text: taskText,
+                completed: false
+            });
+            todoInput.value = "";
+            renderTasks();
+            todoInput.focus();
+        });
+        renderTasks();
+    </script>
+</body>
+</html>
+
