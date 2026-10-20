@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6 kỳ quan thiên nhiên Việt Nam</title>
+<style>
+    *{
+        box-sizing:border-box;
+    }
+    body{
+        font-family:Arial,sans-serif;
+        margin:0;
+        background-color:#ffffff;
+    }
+    .container{
+        width:85%;
+        margin:0 auto;
+    }
+    .header{
+        background-color:#2E7D32;
+        color:#FFEB3B;
+        text-align:center;
+        padding:12px;
+        font-size:20px;
+        font-weight:bold;
+    }
+    .intro{
+        color:#1b5e20;
+        font-size:14px;
+        font-style:italic;
+        text-align:center;
+        padding:18px 10px;
+        border-bottom:1px solid #eeeeee;
+    }
+    .wonder-list{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:12px;
+        margin-top:22px;
+    }
+    .wonder{
+        border:1px solid #dce8dc;
+        border-radius:6px;
+        overflow:hidden;
+        background-color:white;
+    }
+    .wonder img{
+        width:100%;
+        height:100px;
+        object-fit:cover;
+        border-bottom:2px solid #2E7D32;
+        display:block;
+    }
+    .content{
+        padding:10px;
+    }
+    .content h3{
+        color:#1b5e20;
+        font-size:14px;
+        margin:0 0 6px;
+    }
+    .content p{
+        color:#555555;
+        font-size:12px;
+        line-height:1.5;
+        margin:0;
+    }
+    .wonder:nth-child(even){
+        transform:translateY(3px);
+    }
+    @media(max-width:650px){
+        .container{
+            width:95%;
+        }
+        .wonder-list{
+            grid-template-columns:repeat(2,1fr);
+        }
+    }
+    @media(max-width:450px){
+        .wonder-lít{
+            grid-template-columns:1fr;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            6 kỳ quan thiên nhiên Việt Nam
+        </div>
+        <div class="intro">
+            Việt Nam sở hữu nhiều kỳ quan thiên nhiên được thế giới 
+            công nhận-từ vịnh biển, hang động đến núi cao và miền
+            sông nước.
+        </div>
+        <div class="wonder-list">
+            <div class="wonder">
+                <img src="Anh\Bai14\1-vinh-ha-long.jpg"alt="Vịnh Hạ Long">
+                <div class="content">
+                    <h3>1. Vịnh Hạ Long</h3>
+                    <p>Gần 2000 đảo đá vôi.di sản thiên nhiên thế giới,
+                        thuộc Quảng Ninh.
+                    </p>
+                </div>
+            </div>
+            <div class="wonder">
+                <img src="Anh\Bai14\2-son-doong.jpg"alt="hang sơn đoòng">
+                <div class="content">
+                <h3>2. Hang Sơn Đoòng</h3>
+                <p>Hang động tự nhiên lớn nhất thế giới, thuộc Quảng Bình.</p>
+            </div>
+            </div>
+            <div class="wonder">
+                <img src="Anh\Bai14\3-thac-ban-gioc.jpg"alt="thác bản giốc">
+                <div class="content">
+                    <h3>3. Thác Bản Giốc</h3>
+                    <p>Thác nước đẹp nhất Việt Nam, nằm ở Cao Bằng.</p>
+                </div>
+            </div>
+            <div class="wonder">
+                <img src="Anh\Bai14\4-fansipan.jpg"alt="Fansipan">
+                <div class="content">
+                    <h3>4. Fansipan</h3>
+                    <p>"Mái nhà Đông Dương", cao 3147m, thuộc Lào Cai.</p>
+                </div>
+            </div>
+            <div class="wonder">
+                <img src="Anh\Bai14\5-mekong.jpg"alt="mekong">
+                <div class="content">
+                    <h3>5. Đồng bằng sông Cửu Long</h3>
+                    <p>Vựa lúa, miệt vườn sông nước trù phú miền Nam.</p>
+                </div>
+            </div>
+            <div class="wonder">
+                <img src="Anh\Bai14\6-phong-nha.jpg"alt="Động phong nha">
+                <div class="content">
+                    <h3>6. Động Phong Nha</h3>
+                    <p>Hệ thống hang động kỳ vĩ.Di sản thiên nhiên thế giới.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
