@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device=width,initial-scale=1.0">
+    <title>Bảng giá khóa học</title>
+<style>
+    *{
+        box-sizing:border-box;
+    }
+    body{
+        font-family:Arial,sans-serif;
+        background:#f4f7ff;
+        margin:0;
+        padding:30px;
+        color:#1e293b;
+    }
+    .container{
+        max-width:1000px;
+        margin:auto;
+        padding:25px 15px;
+        text-align:center;
+        background:#f0f4ff;
+    }
+    h2{
+        margin:0 0 8px;
+    }
+    mota{
+        color:#64748b;
+        font-size:13px;
+        margin-bottom:30px;
+    }
+    .pricing{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:20px;
+        align-items:center;
+    }
+    .card{
+        background:white;
+        padding:25px 15px;
+        border:1px solid #e2e8f0;
+        border-radius:14px;
+        box-shadow:0 5px 15px #00000010;
+        transition:0.3s;
+    }
+    .hot{
+        border:2px solid #4f46e5;
+        transform:translateY(-8px);
+        box-shadow:0 12px 25px #4f46e540;
+    }
+    .card:hover{
+        transform:translateY(-5px);
+    }
+    .hot:hover{
+        transform:translateY(-13px);
+    }
+    .label{
+        display:inline-block;
+        background:#eef2ff;
+        color:#4338ca;
+        padding:5px 12px;
+        border-radius:20px;
+        font-size:11px;
+        font-weight:bold;
+    }
+    h3{
+        margin:15px 0 8px;
+    }
+    .gia{
+        font-size:30px;
+        font-weight:bold;
+        margin:10px 0 20px;
+    }
+    .gia small{
+        font-size:12px;
+        font-weight:normal;
+    }
+    ul{
+        list-style:none;
+        padding:0;
+        line-height:2;
+        font-size:13px;
+        margin-bottom:20px;
+    }
+    button{
+        width:100%;
+        padding:12px;
+        border:none;
+        border-radius:6px;
+        background:#f1f5f9;
+        color:#334155;
+        font-weight:bold;
+        cursor:pointer;
+    }
+    .hot button{
+        background:#4f46e5;
+        color:white;
+    }
+    button:hover{
+        opacity:0.8;
+    }
+    @media(max-width:650px){
+        body{
+            padding:10px;
+        }
+        .pricing{
+            grid-template-columns:1fr;
+        }
+        .hot{
+            transform:none;
+        }
+        .hot:hover{
+            transform:translateY(-5px);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bảng giá khóa học</h2>
+        <p class="mota">
+            Chọn gói phù hợp-hiệu ứng chuyển động và làm nổi bật gói phổ biến.
+        </p>
+        <div class="pricing">
+            <div class="card">
+                <span class="label">CƠ BẢN</span>
+                <h3>Starter</h3>
+                <div class="gia">0<small>đ</small></div>
+                <ul>
+                    <li>12 bài HTML/CSS</li>
+                    <li>Video hướng dẫn</li>
+                    <li>Hỗ trợ qua email</li>
+                </ul>
+                <button>Bắt đầu</button>
+            </div>
+            <div class="card hot">
+                <span class="label">PHỔ BIẾN NHẤT</span>
+                <h3>Pro</h3>
+                <div class="gia">499<small>k/tháng</small></div>
+                <ul>
+                    <li>30 bài HTNL/CSS/JS</li>
+                    <li>Bootstrap 5</li>
+                    <li>Chấm bài+phản hồi</li>
+                    <li>Hỗ trợ 1-1</li>
+                </ul>
+                <button>Đăng ký ngay</button>
+            </div>
+            <div class="card">
+                <span class="label">NÂNG CAO</span>
+                <h3>Team</h3>
+                <div class="gia">1,2<small>tr/tháng</small></div>
+                <ul>
+                    <li>Mọi quyền lợi gói Pro</li>
+                    <li>Dự án nhóm</li>
+                    <li>Mentor riêng</li>
+                </ul>
+                <button>Liên hệ</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
