@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đồng hồ số</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 24px;
+            background: #f1f1f1;
+            font-family: Arial, sans-serif;
+        }
+        .khung {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .dong-ho {
+            width: 100%;
+            min-height: 210px;
+            padding: 30px 10px;
+            background: #000000;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 3px;
+        }
+        .dong-ho img {
+            display: block;
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .loi-chao {
+            width: 100%;
+            margin-top: 55px;
+            padding: 25px 8px;
+            background: #ffffff;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .chu-chao {
+            margin: 0;
+            color: #c62828;
+            font-family: Arial, sans-serif;
+            font-size: clamp(30px, 7vw, 62px);
+            font-weight: normal;
+            letter-spacing: -1px;
+            word-spacing: 0;
+            line-height: 1.2;
+            text-align: center;
+        }
+        @media (max-width: 550px) {
+            body {
+                padding: 12px;
+            }
+            .dong-ho {
+                min-height: 125px;
+                padding: 25px 3px;
+                gap: 1px;
+            }
+            .dong-ho img {
+                width: 30px;
+                height: 40px;
+            }
+            .loi-chao {
+                margin-top: 35px;
+                padding: 20px 5px;
+            }
+            .chu-chao {
+                font-size: 30px;
+                letter-spacing: -0.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="khung">
+        <div class="dong-ho" id="dongHo"></div>
+        <div class="loi-chao">
+            <p class="chu-chao" id="loiChao">Chào buổi sáng</p>
+        </div>
+    </div>
+    <script>
+        const thuMucAnh = "Anh/Bai13/";
+        function taoAnh(so) {
+            const anh = document.createElement("img");
+            anh.src = thuMucAnh
+                + String(so).padStart(2, "0")
+                + ".gif";
+            anh.alt = so;
+            return anh;
+        }
+        function capNhatDongHo() {
+            const bayGio = new Date();
+            const gio = String(bayGio.getHours()).padStart(2, "0");
+            const phut = String(bayGio.getMinutes()).padStart(2, "0");
+            const giay = String(bayGio.getSeconds()).padStart(2, "0");
+            const thoiGian = gio + phut + giay;
+            const dongHo = document.getElementById("dongHo");
+            dongHo.innerHTML = "";
+            for (let i = 0; i < thoiGian.length; i++) {
+                dongHo.appendChild(taoAnh(thoiGian[i]));
+                if (i === 1 || i === 3) {
+                    const dauHaiCham = document.createElement("img");
+                    dauHaiCham.src = thuMucAnh + "haicham.gif";
+                    dauHaiCham.alt = ":";
+                    dongHo.appendChild(dauHaiCham);
+                }
+            }
+            const h = bayGio.getHours();
+            const loiChao = document.getElementById("loiChao");
+            if (h >= 5 && h < 12) {
+                loiChao.textContent = "Chào buổi sáng";
+            } else if (h >= 12 && h < 18) {
+                loiChao.textContent = "Chào buổi chiều";
+            } else {
+                loiChao.textContent = "Chào buổi tối";
+            }
+        }
+        capNhatDongHo();
+        setInterval(capNhatDongHo, 1000);
+    </script>
+</body>
+</html>
